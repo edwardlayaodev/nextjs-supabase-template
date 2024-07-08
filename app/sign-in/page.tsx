@@ -1,9 +1,10 @@
 import { Form } from "../_forms";
+import { Atom } from "../_components/atoms";
 
 export default function SignInPage() {
   return (
-    <div>
+    <Atom.Hero>
       <Form.SignIn />
-    </div>
+    </Atom.Hero>
   );
 }
