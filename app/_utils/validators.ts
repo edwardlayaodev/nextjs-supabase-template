@@ -8,3 +8,10 @@ export function validateEmail(email: string) {
 export function validatePassword(password: string) {
   return password && password.length >= 8;
 }
+
+export function validateConfirmPassword(
+  password: string,
+  confirmPassword: string
+) {
+  return password == confirmPassword;
+}
