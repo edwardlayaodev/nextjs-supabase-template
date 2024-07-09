@@ -1,12 +1,9 @@
 "use client";
 import React from "react";
-
 import { FormikProps, withFormik } from "formik";
 import { Atom } from "../_components/atoms";
-import { SignInValidationSchema } from "./validation/SignInValidation";
-import { createClient } from "../_utils/supabase/client";
+import { SignInValidationSchema } from "./validation/yup";
 import axios from "axios";
-import { SupabaseClient } from "@supabase/supabase-js";
 
 interface FormValues {
   email: string;

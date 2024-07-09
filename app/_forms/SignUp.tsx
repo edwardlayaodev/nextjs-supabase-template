@@ -3,10 +3,7 @@ import React from "react";
 
 import { FormikProps, withFormik } from "formik";
 import { Atom } from "../_components/atoms";
-import {
-  SignInValidationSchema,
-  SignUpValidationSchema,
-} from "./validation/SignInValidation";
+import { SignUpValidationSchema } from "./validation/yup";
 import axios from "axios";
 
 interface FormValues {
