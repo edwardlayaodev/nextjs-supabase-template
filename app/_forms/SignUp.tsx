@@ -3,20 +3,22 @@ import React from "react";
 
 import { FormikProps, withFormik } from "formik";
 import { Atom } from "../_components/atoms";
-import { SignInValidationSchema } from "./validation/SignInValidation";
-import { createClient } from "../_utils/supabase/client";
+import {
+  SignInValidationSchema,
+  SignUpValidationSchema,
+} from "./validation/SignInValidation";
 import axios from "axios";
-import { SupabaseClient } from "@supabase/supabase-js";
 
 interface FormValues {
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 const InnerForm = (props: FormikProps<FormValues>) => {
   return (
     <section className="flex flex-col gap-4">
-      <h1 className="mx-auto text-2xl font-bold">Sign-in</h1>
+      <h1 className="mx-auto text-2xl font-bold">Sign-Up</h1>
       <form
         className="flex flex-col justify-center items-center gap-4"
         onSubmit={props.handleSubmit}
@@ -41,6 +43,16 @@ const InnerForm = (props: FormikProps<FormValues>) => {
           placeholder="Password"
           inputType="password"
         ></Atom.Input>
+        <Atom.Input
+          onChangeHandler={props.handleChange}
+          onBlurHandler={props.handleBlur}
+          touched={props.touched}
+          errors={props.errors}
+          value={props.values.confirmPassword}
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          inputType="password"
+        ></Atom.Input>
 
         <Atom.Button buttonType={"btn-primary"}>Submit</Atom.Button>
         <div>{props.status}</div>
@@ -49,26 +61,28 @@ const InnerForm = (props: FormikProps<FormValues>) => {
   );
 };
 
-const SignIn = withFormik({
+const SignUp = withFormik({
   mapPropsToValues: () => {
     return {
       email: "",
       password: "",
+      confirmPassword: "",
     };
   },
 
   // Validation using Yup
-  validationSchema: SignInValidationSchema,
+  validationSchema: SignUpValidationSchema,
 
   handleSubmit: async (values, errors) => {
     // do submitting things
     const data: FormValues = {
       email: values.email,
       password: values.password,
+      confirmPassword: values.confirmPassword,
     };
 
     try {
-      const res = await axios.post("/auth/login", {
+      const res = await axios.post("/auth/register", {
         data,
       });
 
@@ -81,4 +95,4 @@ const SignIn = withFormik({
   },
 })(InnerForm);
 
-export default SignIn;
+export default SignUp;
