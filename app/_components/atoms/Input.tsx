@@ -1,5 +1,4 @@
-import { FormikTouched } from "formik";
-import { ChangeEvent, ChangeEventHandler, FocusEvent } from "react";
+import { ChangeEvent, FocusEvent } from "react";
 
 interface Props {
   placeholder: string;
@@ -9,8 +8,41 @@ interface Props {
   name: string;
   onChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
   onBlurHandler: (event: FocusEvent<HTMLInputElement>) => void;
-  inputType: string;
+  type: InputType;
+  extraClass?: string;
 }
+
+type InputType =
+  | "input"
+  | "checkbox"
+  | "file"
+  | "radio"
+  | "range"
+  | "rating"
+  | "select"
+  | "toggle"
+  | "password"
+  | "email";
+
+type InputElement = {
+  type: string;
+  className: string;
+};
+
+type InputTypeRecord = Record<InputType, InputElement>;
+
+const InputProps: InputTypeRecord = {
+  input: { type: "input", className: "input input-bordered" },
+  password: { type: "password", className: "input input-bordered" },
+  email: { type: "email", className: "input input-bordered" },
+  checkbox: { type: "checkbox", className: "checkbox" },
+  file: { type: "file", className: "file-input" },
+  radio: { type: "radio", className: "radio" },
+  range: { type: "range", className: "range" },
+  rating: { type: "radio", className: "mask mask-star" },
+  select: { type: "select", className: "select" },
+  toggle: { type: "checkbox", className: "toggle" },
+};
 
 export default function Input({
   placeholder,
@@ -20,7 +52,8 @@ export default function Input({
   errors,
   touched,
   name,
-  inputType,
+  type,
+  extraClass,
 }: Props) {
   return (
     <>
@@ -29,9 +62,9 @@ export default function Input({
         onBlur={onBlurHandler}
         name={name}
         value={value}
-        type={inputType}
+        type={InputProps[type].type}
         placeholder={placeholder}
-        className="input input-bordered w-full max-w-xs"
+        className={`${InputProps[type].className} ${extraClass}`}
       />
       {errors[name] && touched[name] && (
         <p className="text-error text-sm">{errors[name]}</p>
