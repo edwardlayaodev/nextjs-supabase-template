@@ -28,7 +28,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
           value={props.values.email}
           name="email"
           placeholder="Email"
-          inputType="email"
+          type="email"
         ></Atom.Input>
         <Atom.Input
           onChangeHandler={props.handleChange}
@@ -38,7 +38,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
           value={props.values.password}
           name="password"
           placeholder="Password"
-          inputType="password"
+          type="password"
         ></Atom.Input>
         <Atom.Input
           onChangeHandler={props.handleChange}
@@ -48,7 +48,7 @@ const InnerForm = (props: FormikProps<FormValues>) => {
           value={props.values.confirmPassword}
           name="confirmPassword"
           placeholder="Confirm Password"
-          inputType="password"
+          type="password"
         ></Atom.Input>
 
         <Atom.Button buttonType={"btn-primary"}>Submit</Atom.Button>
