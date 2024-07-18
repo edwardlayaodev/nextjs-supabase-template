@@ -98,7 +98,6 @@ export default function Input({
         />
         {iconPosition == "end" && InputProps[type].svg}
       </label>
-      <i className="bi bi-envelope-fill bg-red-500"></i>
       {errors[name] && touched[name] && (
         <p className="text-error text-sm w-full ">{errors[name]}</p>
       )}
