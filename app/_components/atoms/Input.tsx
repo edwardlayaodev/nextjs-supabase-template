@@ -6,22 +6,38 @@ import {
   DocumentIcon,
 } from "@heroicons/react/16/solid";
 
+/**
+ * Props interface for the Input component.
+ * @param {"start" | "end"} [iconPosition] - The position of the icon relative to the input field. Optional.
+ * @param {"input" | "file" | "password" | "email"} type - The type of the input field. Required.
+ */
 interface Props extends FormProps {
   iconPosition?: "start" | "end";
   type: "input" | "file" | "password" | "email";
 }
 
+/** Constant for the width of icons. */
 const iconWidth = 18;
 
+/**
+ * Interface for input element properties.
+ * @param {string} type - The type of input element.
+ * @param {string} className - The CSS class name for styling the input element.
+ * @param {React.ReactNode} [svg] - The optional SVG icon element.
+ */
 interface InputElement {
   type: string;
   className: string;
   svg?: React.ReactNode;
 }
 
+/** Type definition for a record of input types and their properties. */
 type InputTypeRecord = Record<string, InputElement>;
 
+/** CSS class for text inputs. */
 const textInputClass = "input input-bordered flex items-center gap-2 w-full";
+
+/** Object containing properties for different input types. */
 const InputProps: InputTypeRecord = {
   input: {
     type: "input",
@@ -45,6 +61,11 @@ const InputProps: InputTypeRecord = {
   },
 };
 
+/**
+ * Input component to render different types of input fields with optional icons.
+ * @param {Props} props - The props for the Input component.
+ * @returns {JSX.Element} The rendered input component.
+ */
 export default function Input({
   iconPosition = "start",
   label,
@@ -57,7 +78,7 @@ export default function Input({
   name,
   type,
   extraClass,
-}: Props) {
+}: Props): JSX.Element {
   return (
     <>
       <label
@@ -66,7 +87,6 @@ export default function Input({
       >
         {iconPosition == "start" && InputProps[type].svg}
         {label}
-
         <input
           onChange={onChangeHandler}
           onBlur={onBlurHandler}

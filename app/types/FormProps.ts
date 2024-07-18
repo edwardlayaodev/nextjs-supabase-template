@@ -1,17 +1,16 @@
 import { ChangeEvent, FocusEvent } from "react";
 
 /**
- * FormProps interface used for Forms using FormikBag.
- * @param {string} label - Label for the field, required for accesibility reasons.
- * @param {string} placeholder - Optional, placeholder for the field.
- * @param {any} touched - State for the field if it is touched
- * @param {any} value - Value of the field
- * @param {any} errors - Validation errors of the field
- * @param {string} name - Name of the field, used in formik
- * @param {event: ChangeEvent<any>} onChangeHandler - handler for onChange, used by formik.
- * @param {event: onBlurHandler<any>} onBlurHandler - handler for onBlur, used by formik.
- * @param {string} extraClass - Optional, extra class for further styling
-
+ * Interface for form component properties.
+ * @property {string} label - The label for the form field.
+ * @property {string} [placeholder] - The placeholder text for the form field. Optional.
+ * @property {any} touched - The touched state of the form field.
+ * @property {any} value - The value of the form field.
+ * @property {any} errors - The error messages for the form field.
+ * @property {string} name - The name attribute for the form field.
+ * @property {(event: ChangeEvent<any>) => void} onChangeHandler - The change event handler function.
+ * @property {(event: FocusEvent<any>) => void} onBlurHandler - The blur event handler function.
+ * @property {string} [extraClass] - Additional CSS class names for the form field. Optional.
  */
 
 export default interface FormProps {

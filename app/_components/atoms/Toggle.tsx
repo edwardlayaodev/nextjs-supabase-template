@@ -1,23 +1,40 @@
 import FormProps from "@/app/types/FormProps";
 
+/**
+ * Props interface for the Toggle component.
+ * @param {"toggle" | "checkbox" | "radio"} type - The type of input element. Required.
+ * @param {boolean} [checked] - Indicates whether the input is checked by default. Optional.
+ */
 interface Props extends FormProps {
   type: "toggle" | "checkbox" | "radio";
   checked?: boolean;
 }
 
+/**
+ * Interface for toggle element properties.
+ * @param {string} type - The type of input element.
+ * @param {string} className - The CSS class name for styling the input element.
+ */
 interface ToggleElement {
   type: string;
   className: string;
 }
 
+/** Type definition for a record of input types and their properties. */
 type InputTypeRecord = Record<string, ToggleElement>;
 
+/** Object containing properties for different toggle input types. */
 const ToggleProps: InputTypeRecord = {
   checkbox: { type: "checkbox", className: "checkbox" },
   toggle: { type: "checkbox", className: "toggle" },
   radio: { type: "radio", className: "radio" },
 };
 
+/**
+ * Toggle component to render different types of toggle inputs with optional labels.
+ * @param {Props} props - The props for the Toggle component.
+ * @returns {JSX.Element} The rendered toggle input component.
+ */
 export default function Toggle({
   checked = false,
   label,
@@ -27,7 +44,7 @@ export default function Toggle({
   errors,
   touched,
   type,
-}: Props) {
+}: Props): JSX.Element {
   return (
     <>
       <label className="label cursor-pointer gap-2" htmlFor={name}>
@@ -36,8 +53,8 @@ export default function Toggle({
           onChange={onChangeHandler}
           value={value}
           name={name}
-          type={`${ToggleProps[type].type}`}
-          className={`${ToggleProps[type].className}`}
+          type={ToggleProps[type].type}
+          className={ToggleProps[type].className}
           defaultChecked={checked}
         />
       </label>
