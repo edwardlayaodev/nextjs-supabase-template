@@ -32,7 +32,10 @@ export default function Rating({ onChangeHandler, name, maxRating }: Props) {
   }
 
   return (
-    <label htmlFor={name} className="rating">
+    <label
+      htmlFor={name}
+      className="rating rating-xs sm:rating-sm md:rating-md"
+    >
       {elements}
     </label>
   );

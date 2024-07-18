@@ -25,8 +25,8 @@ export default function Range({
   label,
 }: Props) {
   return (
-    <label className="label flex items-center gap-4 w-full">
-      <span className="label-text text-sm">{label}</span>
+    <label className="label flex items-center gap-4 w-full ">
+      <span className="label-text text-xs md:text-sm">{label}</span>
       <input
         name={name}
         onChange={onChangeHandler}
@@ -35,7 +35,7 @@ export default function Range({
         min={min}
         max={max}
         value={value}
-        className="range"
+        className="range range-xs sm:range-sm md:range-md"
       />
       <span className="label-text text-sm right-[-10px]">{value}</span>
     </label>

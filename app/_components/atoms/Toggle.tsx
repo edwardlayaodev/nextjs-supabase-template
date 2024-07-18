@@ -25,9 +25,15 @@ type InputTypeRecord = Record<string, ToggleElement>;
 
 /** Object containing properties for different toggle input types. */
 const ToggleProps: InputTypeRecord = {
-  checkbox: { type: "checkbox", className: "checkbox" },
-  toggle: { type: "checkbox", className: "toggle" },
-  radio: { type: "radio", className: "radio" },
+  checkbox: {
+    type: "checkbox",
+    className: "checkbox checkbox-xs sm:checkbox-sm md:checkbox-md",
+  },
+  toggle: {
+    type: "checkbox",
+    className: "toggle toggle-xs sm:toggle-sm md:toggle-md",
+  },
+  radio: { type: "radio", className: "radio radio-xs sm:radio-sm md:radio-md" },
 };
 
 /**
@@ -48,7 +54,7 @@ export default function Toggle({
   return (
     <>
       <label className="label cursor-pointer gap-2" htmlFor={name}>
-        <span className="label-text">{label}</span>
+        <span className="label-text text-xs md:text-sm">{label}</span>
         <input
           onChange={onChangeHandler}
           value={value}

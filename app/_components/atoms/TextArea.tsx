@@ -39,7 +39,7 @@ export default function TextArea({
         onBlur={onBlurHandler}
         name={name}
         placeholder={placeholder}
-        className={`textarea textarea-bordered textarea-lg ${extraClass}`}
+        className={`textarea textarea-bordered textarea-xs sm:textarea-sm md:textarea-md ${extraClass}`}
       />
       {errors[name] && touched[name] && (
         <p className="text-error text-sm">{errors[name]}</p>

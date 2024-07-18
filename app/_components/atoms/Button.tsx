@@ -19,7 +19,11 @@ interface Props {
  */
 export default function Button({ children, buttonType, onClick }: Props) {
   return (
-    <button type="submit" className={`btn ${buttonType}`} onClick={onClick}>
+    <button
+      type="submit"
+      className={`btn ${buttonType} btn-xs sm:btn-sm md:btn-md`}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

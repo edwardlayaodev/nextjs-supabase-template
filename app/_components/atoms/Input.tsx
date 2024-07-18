@@ -35,7 +35,8 @@ interface InputElement {
 type InputTypeRecord = Record<string, InputElement>;
 
 /** CSS class for text inputs. */
-const textInputClass = "input input-bordered flex items-center gap-2 w-full";
+const textInputClass =
+  "input input-bordered input-xs sm:input-sm md:input-md flex items-center gap-2 w-full";
 
 /** Object containing properties for different input types. */
 const InputProps: InputTypeRecord = {
@@ -56,7 +57,8 @@ const InputProps: InputTypeRecord = {
   },
   file: {
     type: "file",
-    className: "file-input input-bordered flex p-2 items-center gap-4",
+    className:
+      "file-input file-input-bordered file-input-xs sm:file-input-sm md:file-input-md flex p-2 items-center gap-4",
     svg: <DocumentIcon width={iconWidth} />,
   },
 };
@@ -82,11 +84,14 @@ export default function Input({
   return (
     <>
       <label
-        className={`${InputProps[type].className} ${extraClass}`}
+        className={`${InputProps[type].className} ${extraClass} ${
+          errors[name] && touched[name] && "border-error"
+        }`}
         htmlFor={name}
       >
         {iconPosition == "start" && InputProps[type].svg}
-        {label}
+        <p className="label-text text-xs md:text-sm">{label}</p>
+
         <input
           onChange={onChangeHandler}
           onBlur={onBlurHandler}

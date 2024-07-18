@@ -28,14 +28,16 @@ export default function Select({
   return (
     <label className="form-control w-full">
       <div className="label">
-        <span className="label-text">{label}</span>
-        {altLabel && <span className="label-text-alt">{altLabel}</span>}
+        <span className="label-text text-xs md:text-sm">{label}</span>
+        {altLabel && (
+          <span className="label-text-alt text-xs md:text-sm">{altLabel}</span>
+        )}
       </div>
       <select
         name={name}
         onChange={onChangeHandler}
         onBlur={onBlurHandler}
-        className={`select select-bordered ${extraClass}`}
+        className={`select select-bordered select-xs sm:select-sm md:select-md ${extraClass}`}
       >
         {optionList?.map((item, index) => (
           <option key={item + index}>{item}</option>
