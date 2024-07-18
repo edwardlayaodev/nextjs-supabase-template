@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Card from "./Card";
 import Hero from "./Hero";
 import Input from "./Input";
 import Range from "./Range";
@@ -19,6 +20,8 @@ import Visibility from "./Visibility";
  * @property {React.ComponentType} Select - Component for select inputs.
  * @property {React.ComponentType} TextArea - Component for text areas.
  * @property {React.ComponentType} Toggle - Component for toggle inputs.
+ * @property {React.ComponentType} Card - Component for displaying content in a Card container.
+
  */
 export const Atom = {
   Input,
@@ -30,4 +33,5 @@ export const Atom = {
   Select,
   TextArea,
   Toggle,
+  Card,
 };
