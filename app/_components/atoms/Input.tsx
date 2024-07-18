@@ -80,7 +80,7 @@ export default function Input({
   name,
   type,
   extraClass,
-}: Props): JSX.Element {
+}: Props) {
   return (
     <>
       <label

@@ -50,7 +50,7 @@ export default function Toggle({
   errors,
   touched,
   type,
-}: Props): JSX.Element {
+}: Props) {
   return (
     <>
       <label className="label cursor-pointer gap-2" htmlFor={name}>

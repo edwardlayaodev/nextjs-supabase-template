@@ -13,7 +13,7 @@ interface Props {
  * @param {Props} props - The props for the Card component.
  * @returns {JSX.Element} The rendered Card component.
  */
-export default function Card({ children, extraClass }: Props): JSX.Element {
+export default function Card({ children, extraClass }: Props) {
   return (
     <div
       className={`card bg-base-100 shadow-xl w-full px-2 py-4 md:p-6 ${extraClass}`}
