@@ -2,6 +2,7 @@
 import React from "react";
 import { FormikProps, withFormik } from "formik";
 import { Atom } from "../_components/atoms";
+import { Molecule } from "../_components/molecules";
 
 interface FormValues {
   checkbox: string;
@@ -19,7 +20,11 @@ interface FormValues {
 
 const InnerForm = (props: FormikProps<FormValues>) => {
   return (
-    <Atom.Card>
+    <Molecule.Modal
+      actionHandler={props.handleSubmit}
+      id="signInModal"
+      buttonProps={{ type: "btn-primary", label: "Open Test Form" }}
+    >
       <section className="flex flex-col gap-4">
         <h1 className="mx-auto text-2xl font-bold">Sign-in</h1>
         <form
@@ -150,12 +155,11 @@ const InnerForm = (props: FormikProps<FormValues>) => {
             name="textarea"
             label="Text Area"
           ></Atom.TextArea>
-
           <Atom.Button buttonType={"btn-primary"}>Submit</Atom.Button>
           <div>{props.status}</div>
         </form>
       </section>
-    </Atom.Card>
+    </Molecule.Modal>
   );
 };
 
