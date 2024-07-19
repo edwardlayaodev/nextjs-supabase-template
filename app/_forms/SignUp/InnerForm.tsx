@@ -7,6 +7,30 @@ import SignUpFormValues from "@/app/types/SignUpFormValues";
  * @returns JSX.Element
  */
 export const InnerForm = (props: FormikProps<SignUpFormValues>) => {
+  // Fields for the Input Components
+  const inputFields = [
+    { type: "email", name: "email", label: "Email" },
+    { type: "password", name: "password", label: "Password" },
+    { type: "password", name: "confirmPassword", label: "Confirm Password" },
+  ];
+
+  // render based on inputFields
+  const renderInputFields = inputFields.map((item, index) => {
+    return (
+      <Atom.Input
+        key={item.name + index}
+        label={item.label}
+        onChangeHandler={props.handleChange}
+        onBlurHandler={props.handleBlur}
+        touched={props.touched}
+        errors={props.errors}
+        value={props.values.email}
+        name={item.name}
+        type={item.type as "email" | "password"}
+      />
+    );
+  });
+
   return (
     <section className="flex flex-col gap-4">
       <h1 className="mx-auto text-2xl font-bold">Sign-Up</h1>
@@ -14,36 +38,7 @@ export const InnerForm = (props: FormikProps<SignUpFormValues>) => {
         className="flex flex-col justify-center items-center gap-4"
         onSubmit={props.handleSubmit}
       >
-        <Atom.Input
-          label="Email"
-          onChangeHandler={props.handleChange}
-          onBlurHandler={props.handleBlur}
-          touched={props.touched}
-          errors={props.errors}
-          value={props.values.email}
-          name="email"
-          type="email"
-        />
-        <Atom.Input
-          label="Password"
-          onChangeHandler={props.handleChange}
-          onBlurHandler={props.handleBlur}
-          touched={props.touched}
-          errors={props.errors}
-          value={props.values.password}
-          name="password"
-          type="password"
-        />
-        <Atom.Input
-          label="Confirm Password"
-          onChangeHandler={props.handleChange}
-          onBlurHandler={props.handleBlur}
-          touched={props.touched}
-          errors={props.errors}
-          value={props.values.confirmPassword}
-          name="confirmPassword"
-          type="password"
-        />
+        {renderInputFields}
         <Atom.Button buttonType={"btn-primary"}>Submit</Atom.Button>
         <div>{props.status}</div>
       </form>
