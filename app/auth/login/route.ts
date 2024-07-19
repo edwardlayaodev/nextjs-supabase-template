@@ -1,23 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/app/_utils/supabase/server";
 import { validateEmail, validatePassword } from "@/app/_utils/validators";
-import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
 
-interface FormData {
-  email: string;
-  password: string;
-}
-
-export async function POST(req: NextRequest) {
+/**
+ * Handles the POST request for user login.
+ * @param {NextRequest} req - The incoming request object.
+ * @returns {Promise<NextResponse>} The response object.
+ */
+export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const supabase = createClient();
 
-    // parse formdata and validate
     const body = await req.json();
     const { email, password } = body.data;
 
-    // validations
+    // Check if email and password are provided
     if (!email || !password) {
       return NextResponse.json(
         { error: "Email and password are required." },
@@ -25,6 +22,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Validate email format
     if (!validateEmail(email)) {
       return NextResponse.json(
         { error: "Invalid email format." },
@@ -32,6 +30,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Validate password length
     if (!validatePassword(password)) {
       return NextResponse.json(
         { error: "Password must be at least 8 characters long." },
@@ -39,12 +38,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Attempt to sign in with email and password
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
-    // guard if error
+    // Check for authentication error
     if (error) {
       return NextResponse.json(
         { error: "Invalid Username or Password" },
@@ -52,12 +52,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // when everything is OK
+    // Return success response
     return NextResponse.json(
       { message: "Login Successful, Redirecting" },
       { status: 200 }
     );
   } catch (error) {
+    // Handle unexpected errors
     return NextResponse.json(
       { error: "Invalid request body.", message: error },
       { status: 400 }
