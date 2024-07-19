@@ -8,9 +8,11 @@ import Select from "./Select";
 import TextArea from "./TextArea";
 import Toggle from "./Toggle";
 import Visibility from "./Visibility";
+import Alert from "./Alert";
 
 /**
  * Exported Atom object containing various atomic components.
+ * @property {React.ComponentType} Brand - Component for app-wide brand.
  * @property {React.ComponentType} Input - Component for input fields.
  * @property {React.ComponentType} Button - Component for buttons.
  * @property {React.ComponentType} Hero - Component for hero sections.
@@ -21,8 +23,9 @@ import Visibility from "./Visibility";
  * @property {React.ComponentType} TextArea - Component for text areas.
  * @property {React.ComponentType} Toggle - Component for toggle inputs.
  * @property {React.ComponentType} Card - Component for displaying content in a Card container.
-
+ * @property {React.ComponentType} Alert - Component for displaying user feedback via alerts.
  */
+
 export const Atom = {
   Input,
   Button,
@@ -34,4 +37,5 @@ export const Atom = {
   TextArea,
   Toggle,
   Card,
+  Alert,
 };
