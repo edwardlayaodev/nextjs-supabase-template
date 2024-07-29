@@ -48,7 +48,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     if (error) {
       return NextResponse.json(
         { error: "Invalid Username or Password" },
-        { status: 400 }
+        { status: 401 }
       );
     }
 
