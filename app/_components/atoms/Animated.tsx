@@ -6,6 +6,7 @@ import { AnimatePresence, motion, AnimationProps } from "framer-motion";
  * @param {children} React.ReactNode - The Child Element, content of the animated container.
  * @param {isVisible} boolean - The state in which the children should be rendered, this triggers animate presence when false, which makes the animation finish first before unmounting.
  * @param {extraClass} string - Extra classes for the animated container.
+ * @param {"slideFromTop" | "opacity"} animationType  -  The Animation Type, used in type record/definition
  */
 interface Props {
   children: React.ReactNode;
