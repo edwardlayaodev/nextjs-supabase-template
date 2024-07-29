@@ -1,3 +1,4 @@
+import Animated from "./Animated";
 import Button from "./Button";
 import Card from "./Card";
 import Hero from "./Hero";
@@ -8,7 +9,6 @@ import Select from "./Select";
 import TextArea from "./TextArea";
 import Toggle from "./Toggle";
 import Visibility from "./Visibility";
-import Alert from "./Alert";
 
 /**
  * Exported Atom object containing various atomic components.
@@ -23,7 +23,7 @@ import Alert from "./Alert";
  * @property {React.ComponentType} TextArea - Component for text areas.
  * @property {React.ComponentType} Toggle - Component for toggle inputs.
  * @property {React.ComponentType} Card - Component for displaying content in a Card container.
- * @property {React.ComponentType} Alert - Component for displaying user feedback via alerts.
+ * @property {React.ComponentType} AnimationOnExit - Component for timing the animation and component unmount
  */
 
 export const Atom = {
@@ -37,5 +37,5 @@ export const Atom = {
   TextArea,
   Toggle,
   Card,
-  Alert,
+  Animated,
 };
