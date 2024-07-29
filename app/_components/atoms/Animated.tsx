@@ -1,5 +1,5 @@
 "use client";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, AnimationProps } from "framer-motion";
 
 /**
  * Interface for Animated properties.
@@ -11,23 +11,46 @@ interface Props {
   children: React.ReactNode;
   isVisible: boolean;
   extraClass: string;
+  animationType: "slideFromTop" | "opacity";
 }
+
+type AnimationTypeRecord = Record<string, any>;
+
+const AnimationTypeProps: AnimationTypeRecord = {
+  slideFromTop: {
+    initial: { y: -500 },
+    animate: { y: 0 },
+    transition: { duration: 0.3 },
+    exit: { y: -500 },
+  },
+  opacity: {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 0.3 },
+    exit: { opacity: 0 },
+  },
+};
 
 /**
  * Animated component for handling animations onMount and onDestroy.
  * @param {Props} props - The props for the Animated component.
  * @returns
  */
-export default function Animated({ children, isVisible, extraClass }: Props) {
+export default function Animated({
+  children,
+  isVisible,
+  extraClass,
+  animationType,
+}: Props) {
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
           className={extraClass}
-          initial={{ y: -500 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5 }}
-          exit={{ y: -500 }}
+          initial={AnimationTypeProps[animationType]?.initial}
+          animate={AnimationTypeProps[animationType]?.animate}
+          transition={AnimationTypeProps[animationType]?.transition}
+          exit={AnimationTypeProps[animationType]?.exit}
         >
           {children}
         </motion.div>
