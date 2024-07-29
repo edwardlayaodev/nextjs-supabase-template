@@ -12,6 +12,7 @@ import { Atom } from "../atoms";
  * @param {"info" | "success" | "warning" | "error"} type - The type of alert, referring to the icon and color.
  * @param {message} string - The alert Message.
  * @param {isOpen} boolean - The state for showing the alert.
+ * @param {onClose} function - The close action handler, for the close button 'x', also used on Atom.Animation for handling component exit
  */
 interface Props {
   type: "info" | "success" | "warning" | "error";
