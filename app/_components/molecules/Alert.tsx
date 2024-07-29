@@ -3,6 +3,7 @@ import {
   InformationCircleIcon,
   CheckCircleIcon,
   ExclamationTriangleIcon,
+  XMarkIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
 import { Atom } from "../atoms";
@@ -51,7 +52,11 @@ export default function Alert({ type, message, onClose, isOpen }: Props) {
   };
 
   return (
-    <Atom.Animated extraClass="w-full absolute top-0" isVisible={isOpen}>
+    <Atom.Animated
+      animationType={"slideFromTop"}
+      extraClass="w-full absolute top-0"
+      isVisible={isOpen}
+    >
       <div
         role="alert"
         className={`relative w-full alert flex flex-col justify-start items-start ${alertTypeClass[type].class}`}
@@ -59,7 +64,7 @@ export default function Alert({ type, message, onClose, isOpen }: Props) {
         <div className="flex flex-row gap-4">
           {alertTypeClass[type].svg}
           <span>{message}</span>
-          <XCircleIcon
+          <XMarkIcon
             onClick={onClose}
             className="w-6 cursor-pointer absolute right-5"
           />

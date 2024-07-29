@@ -5,6 +5,7 @@ import {
   DocumentTextIcon,
   DocumentIcon,
 } from "@heroicons/react/16/solid";
+import { Atom } from ".";
 
 /**
  * Props interface for the Input component.
@@ -103,9 +104,16 @@ export default function Input({
         />
         {iconPosition == "end" && InputProps[type].svg}
       </label>
-      {errors[name] && touched[name] && (
-        <p className="text-error text-sm w-full ">{errors[name]}</p>
-      )}
+
+      <Atom.Animated
+        animationType="opacity"
+        extraClass=""
+        isVisible={errors[name] && touched[name]}
+      >
+        {errors[name] && touched[name] && (
+          <p className="text-error text-sm w-full ">{errors[name]}</p>
+        )}
+      </Atom.Animated>
     </>
   );
 }
