@@ -1,10 +1,34 @@
-/**
- * Here are some test cases for your `TextArea` component:
+import { Atom } from "@/app/_components/atoms";
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
-1. Render the textarea with the correct placeholder
-2. Render the label and optional alternate label
-3. Apply the correct `name` attribute
-4. Call `onChangeHandler` and `onBlurHandler` correctly
-5. Apply the correct CSS classes
-6. Display error message when there are validation errors
- */
+describe("TextArea", () => {
+  beforeEach(() => {
+    render(
+      <Atom.TextArea
+        altLabel="altlabel"
+        placeholder="textarea placeholder"
+        label={"label"}
+        onChangeHandler={() => {}}
+        onBlurHandler={() => {}}
+        touched={true}
+        errors={[]}
+        value={"hello world"}
+        name={"textarea"}
+      />
+    );
+  });
+
+  it("renders the label and altlabel", () => {
+    const label = screen.queryByText("label");
+    const altLabel = screen.queryByText("altlabel");
+
+    expect(label).toBeInTheDocument();
+    expect(altLabel).toBeInTheDocument();
+  });
+
+  it("renders the value", () => {
+    const input = screen.queryByPlaceholderText("textarea placeholder");
+    expect(input).toHaveValue("hello world");
+  });
+});

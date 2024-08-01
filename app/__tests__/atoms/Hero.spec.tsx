@@ -1,7 +1,14 @@
-/**
- * Here are some test cases for your `Hero` component:
+import { Atom } from "@/app/_components/atoms";
+import { screen, render } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
-1. Render the Hero component with children
-2. Apply the correct default classes to the section
-3. Apply the correct classes to the hero content
- */
+describe("Hero", () => {
+  beforeEach(() => {
+    render(<Atom.Hero>test</Atom.Hero>);
+  });
+
+  it("renders the Hero Section", () => {
+    const heroText = screen.queryByText("test");
+    expect(heroText).toBeInTheDocument();
+  });
+});

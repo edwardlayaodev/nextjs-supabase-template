@@ -1,15 +1,58 @@
-/**
- * Here are the test cases for your `Alert` component:
+import { Atom } from "@/app/_components/atoms";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { Molecule } from "@/app/_components/molecules";
 
-1. **Render the Alert with Correct Icon and Styles**: Ensure the alert has the correct icon and styling based on the `type` prop.
+const closeHandler = jest.fn();
+const alertType = ["info", "success", "warning", "error"];
 
-2. **Display Alert Message**: Verify that the alert message is displayed correctly.
+const alertRender = alertType.map((type, index) => {
+  return (
+    <Molecule.Alert
+      key={type + index}
+      type={type as "info" | "success" | "warning" | "error"}
+      message={`${type}_message`}
+      isOpen={true}
+      onClose={closeHandler}
+    />
+  );
+});
+describe("Alert", () => {
+  it("renders the correct alert by type", () => {
+    const { container } = render(alertRender);
+    alertType.forEach((item) => {
+      const el = container.querySelector(`.alert-${item}`);
+      expect(el).toBeInTheDocument();
+    });
+  });
+  it("does not render the alert when isOpen is false", () => {
+    render(
+      <Molecule.Alert
+        type="info"
+        message={`message`}
+        isOpen={false}
+        onClose={closeHandler}
+      />
+    );
 
-3. **Handle `isOpen` State**: Test that the alert is visible when `isOpen` is `true` and not visible when `isOpen` is `false`.
+    const text = screen.queryByText("message");
+    expect(text).not.toBeInTheDocument();
+  });
+  it("fire onClose function handler", async () => {
+    const { container } = render(
+      <Molecule.Alert
+        type="info"
+        message={`message`}
+        isOpen={true}
+        onClose={closeHandler}
+      />
+    );
 
-4. **Close Button Functionality**: Check that clicking the close button calls the `onClose` handler.
+    const button = screen.getByRole("button");
+    fireEvent.click(button);
 
-5. **Alert Container Class**: Ensure the alert container has the correct classes applied based on the `type` prop.
-
-6. **Animation Visibility**: Verify that the `Atom.Animated` component handles the visibility of the alert based on `isOpen`.
- */
+    await waitFor(() => {
+      expect(closeHandler).toHaveBeenCalled();
+    });
+  });
+});

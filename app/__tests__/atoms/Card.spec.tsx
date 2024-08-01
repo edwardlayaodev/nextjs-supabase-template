@@ -1,7 +1,19 @@
-/**
- * Here are some test cases for your `Card` component:
+import { Atom } from "@/app/_components/atoms";
+import { screen, render } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
-1. Render the card with children
-2. Apply the correct default classes
-3. Apply additional classes from `extraClass` prop
- */
+describe("Card", () => {
+  beforeEach(() => {
+    render(<Atom.Card extraClass="extra">test</Atom.Card>);
+  });
+
+  it("renders the card", () => {
+    const card = screen.queryByText("test");
+    expect(card).toBeInTheDocument();
+  });
+
+  it("applies the extraClass", () => {
+    const extraClass = screen.queryByText("test");
+    expect(extraClass).toHaveClass("extra");
+  });
+});

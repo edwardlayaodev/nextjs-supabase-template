@@ -1,8 +1,34 @@
-/**
- * 1. Render the select dropdown with the correct options
-2. Render the label and optional alternate label
-3. Apply the correct `name` attribute
-4. Call `onChangeHandler` and `onBlurHandler` correctly
-5. Apply the correct CSS classes
-6. Display error message when there are validation errors
- */
+import { Atom } from "@/app/_components/atoms";
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
+
+const options = ["foo", "bar"];
+
+describe("Select", () => {
+  beforeEach(() => {
+    render(
+      <Atom.Select
+        optionList={options}
+        altLabel="foobar"
+        label={"select"}
+        onChangeHandler={() => {}}
+        onBlurHandler={() => {}}
+        touched={true}
+        errors={[]}
+        value={50}
+        name={"selectInput"}
+      />
+    );
+  });
+  it("renders the options properly", () => {
+    options.forEach((option) => {
+      const text = screen.getByText(option);
+      expect(text).toBeInTheDocument();
+    });
+  });
+
+  it("renders the label properly", () => {
+    const label = screen.getByText("select");
+    expect(label).toBeInTheDocument();
+  });
+});

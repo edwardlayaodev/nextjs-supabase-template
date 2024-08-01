@@ -1,10 +1,36 @@
-/**
- * Here are some test cases for your `Toggle` component:
+import { Atom } from "@/app/_components/atoms";
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
-1. Render the toggle input with the correct `type`
-2. Apply the correct `name` attribute
-3. Render with `checked` state applied
-4. Call `onChangeHandler` correctly
-5. Apply the correct CSS classes based on `type`
-6. Display error message when there are validation errors
- */
+const toggleTypes = ["toggle", "checkbox", "radio"];
+
+const toggleRender = toggleTypes.map((type, index) => {
+  return (
+    <Atom.Toggle
+      key={type + index}
+      type={type as "toggle" | "checkbox" | "radio"}
+      label={`${type}_label`}
+      onChangeHandler={() => {}}
+      onBlurHandler={() => {}}
+      touched={true}
+      errors={[]}
+      value={true}
+      name={type}
+    />
+  );
+});
+describe("Toggle", () => {
+  it("renders the correct input for the type", () => {
+    const { container } = render(toggleRender);
+    toggleTypes.forEach((type) => {
+      const input = container.querySelector(`input[name="${type}"]`);
+      expect(input).toHaveClass(type);
+    });
+  });
+  it("renders the label", () => {
+    render(toggleRender);
+    toggleTypes.forEach((type) => {
+      screen.getByText(`${type}_label`);
+    });
+  });
+});
